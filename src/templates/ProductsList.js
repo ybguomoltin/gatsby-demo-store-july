@@ -36,7 +36,9 @@ export default ProductsList
 
 export const query = graphql`
   query allProductsQuery($limit: Int!, $skip: Int!) {
-    allMoltinProduct(limit: $limit, skip: $skip) {
+    allMoltinProduct(
+    filter: { color: {ne: "base"}}  
+    limit: $limit, skip: $skip) {
       edges {
         node {
           id
@@ -49,6 +51,7 @@ export const query = graphql`
               }
             }
           }
+          color
           meta {
             display_price {
               without_tax {

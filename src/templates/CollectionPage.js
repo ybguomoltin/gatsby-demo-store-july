@@ -46,7 +46,7 @@ export const query = graphql`
     }
 
     products: allMoltinProduct(
-      filter: { collections: { elemMatch: { id: { eq: $id } } } }
+      filter: { collections: { elemMatch: { id: { eq: $id } } }, color: {ne: "base"} }
       limit: $limit
       skip: $skip
     ) {
@@ -61,6 +61,7 @@ export const query = graphql`
             }
           }
         }
+        color
         meta {
           display_price {
             without_tax {

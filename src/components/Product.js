@@ -33,7 +33,7 @@ export default function Product({ id, slug, name, mainImage, meta, on_sale }) {
           <div className={photoClass}>
             <Photo src={mainImage} />
           </div>
-
+           
           <div className={infoClass}>
             <p className="text-black no-underline flex items-center">
               {name}

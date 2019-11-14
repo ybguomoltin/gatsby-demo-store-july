@@ -8,6 +8,19 @@ import AddToCart from '../components/AddToCart'
 import useMoltinInventory from '../hooks/useMoltinInventory'
 import SocialLinks from '../components/SocialLinks'
 
+
+function Specs({ dimension, product_weight, capacity }) {
+    const spec_style = {'font-weight': 'bold'}
+    const value_style = {'text-align': 'right'}
+    return (
+        <table>
+        <tr><td style={spec_style}>Dimension</td><td style={value_style}> { dimension }</td></tr>
+        <tr><td style={spec_style}>Product Weight</td><td style={value_style}> { product_weight }kg</td></tr>
+        <tr><td style={spec_style}>Capacity</td><td style={value_style}> { capacity }L</td></tr>
+        </table>
+    )
+}
+
 function ProductPage({ data: { product } }) {
   const [inventory, inventoryLoading, inventoryError] = useMoltinInventory(
     product
@@ -78,6 +91,10 @@ function ProductPage({ data: { product } }) {
 
           <div className="my-2 md:my-5">
             <h4 className="hidden md:block text-lg text-black font-bold my-2">
+              Product Specifications
+            </h4>
+            <p><Specs dimension={product.dimension} product_weight={product.p_weight} capacity={product.capacity}></Specs></p>
+            <h4 className="hidden md:block text-lg text-black font-bold my-2">
               Description
             </h4>
             <p>{product.description}</p>
@@ -114,6 +131,9 @@ export const query = graphql`
         }
       }
       manage_stock
+      dimension
+      capacity
+      p_weight
     }
   }
 `
