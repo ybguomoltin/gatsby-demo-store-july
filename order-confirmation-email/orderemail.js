@@ -4,7 +4,7 @@ const { ServerClient: PostmarkClient } = require('postmark')
 
 const postmark = new PostmarkClient(process.env.POSTMARK_API_KEY)
 
-module.exports = cors(async (req, res) => {
+exports.handler = cors(async (req, res) => {
   if (
     (await req.headers['x-moltin-secret-key']) !=
     process.env.MOLTIN_WEBHOOK_SECRET
