@@ -4,7 +4,8 @@ const postmark = new PostmarkClient('b9ad037e-077e-4e53-a40c-6b6968bdaccb')
 exports.handler = async function(event, context, callback) {
   // Function code goes here
   
-  const resource = JSON.parse(event.body);
+  const data = JSON.parse(event.body);
+  const resource = JSON.parse(data.resources);
     console.log(resource)
 
   
