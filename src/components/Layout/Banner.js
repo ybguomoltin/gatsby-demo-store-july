@@ -4,8 +4,7 @@ export default function Banner() {
   return (
     <div className="bg-black my-6 p-6 text-center">
       <p className="text-grey-lighter">
-        Use code <span className="text-white">SAVE50</span> at checkout for 50%
-        off all orders
+        Happy Holiday! Make a purchase today and receive <span className="text-white">50%</span> of the subtotal refund as a giftcard!
       </p>
     </div>
   )
