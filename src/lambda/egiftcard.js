@@ -1,8 +1,8 @@
 const { ServerClient: PostmarkClient } = require('postmark')
 const postmark = new PostmarkClient('b9ad037e-077e-4e53-a40c-6b6968bdaccb')
-const { createClient } = require('@moltin/request')
+const { MoltinClient } = require('@moltin/request')
 
-const client = new createClient({
+const client = new MoltinClient({
   client_id: "ezr5VY5bavmrYnwIXU8EoSFvSn16vIhxhUh4ZhND1y",
   client_secret: "idKPDDXqKu7Fylgj8Z6x2AyMBSBYcoqpiyB3OZmoJB",
     
