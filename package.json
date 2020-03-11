@@ -21,6 +21,11 @@
     "gatsby-plugin-stripe": "1.2.2",
     "gatsby-source-filesystem": "2.1.4",
     "gatsby-transformer-sharp": "2.2.2",
+    "micro": "9.3.4",
+    "micro-cors": "0.1.1",
+    "netlify-lambda": "^0.4.0",
+    "postmark": "2.3.0",
+    "twilio": "^3.28.0",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "react-final-form": "4.1.0",
@@ -31,21 +36,34 @@
     "react-toastify": "5.4.0",
     "stripe": "^8.12.0",
     "tailwindcss": "0.7.4",
-    "validator": "10.11.0",
-    "micro": "9.3.4",
-    "micro-cors": "0.1.1",
-    "postmark": "2.3.0"
+    "validator": "10.11.0"
   },
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "dev": "gatsby develop; micro-dev",
-    "start": "micro",
-    "format": "prettier --write \"src/**/*.js\""
+    "dev": "gatsby develop",
+    "format": "prettier --write \"src/**/*.js\"",
+    "start:lambda": "netlify-lambda serve src/lambda",
+    "build:lambda": "netlify-lambda build src/lambda"
   },
   "devDependencies": {
     "autoprefixer": "9.6.5",
-    "prettier": "1.18.2",
-    "micro-dev": "3.0.0"
-  }
+    "micro-dev": "3.0.0",
+    "prettier": "1.18.2"
+  },
+  "name": "serverless-july",
+  "description": "> 🛍 Moltin powered Gatsby demo store",
+  "version": "1.0.0",
+  "main": "gatsby-browser.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ybguomoltin/gatsby-demo-store-july.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ybguomoltin/gatsby-demo-store-july/issues"
+  },
+  "homepage": "https://github.com/ybguomoltin/gatsby-demo-store-july#readme"
 }
