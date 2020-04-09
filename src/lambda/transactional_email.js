@@ -33,7 +33,7 @@ exports.handler = async function(event, context, callback) {
     } = resource
             
     await postmark.sendEmailWithTemplate({
-       from: "yi.bin.guo@moltin.com",
+       from: "yi.guo@elasticpath.com",
        to: data.customer.email,
        templateId: param.postmark_template_id,
        templateModel: {
