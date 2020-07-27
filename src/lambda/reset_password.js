@@ -8,7 +8,7 @@ const client = new MoltinClient({
   client_secret: process.env.PW_CLIENT_SECRET
 });
 
-module.exports = cors(async (req, res) => {
+exports.handler = cors(async (req, res) => {
   console.log(req.body);
   const { token = "", email, password } = req.body;
 
