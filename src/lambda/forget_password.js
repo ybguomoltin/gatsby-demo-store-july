@@ -4,7 +4,7 @@ const { MoltinClient } = require("@moltin/request");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const sendEmail = require("../emails/providers/sendgrid");
+const sendEmail = require("./ESP/sendgrid");
 const client = new MoltinClient({
   client_id: process.env.PW_CLIENT_ID,
   client_secret: process.env.PW_CLIENT_SECRET
