@@ -6,8 +6,8 @@ const bcrypt = require("bcrypt");
 
 const sendEmail = require("../emails/providers/sendgrid");
 const client = new MoltinClient({
-  client_id: "a2SyrXlQn1HzaH27am93RPzt7hSslNXRYGRy5o5THB",
-  client_secret: "SpYDhGamemK5SjgopkBxQqlyiT3EBCp6Zcf9PmeBmd"
+  client_id: process.env.PW_CLIENT_ID,
+  client_secret: process.env.PW_CLIENT_SECRET
 });
 module.exports = cors(async (req, res) => {
   const { email = "" } = req.body;
