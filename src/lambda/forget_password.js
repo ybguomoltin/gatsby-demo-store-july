@@ -10,7 +10,7 @@ const client = new MoltinClient({
   client_secret: process.env.PW_CLIENT_SECRET
 });
 exports.handler = cors(async (req, res) => {
-  const { email = "" } = req.body;
+  const { email = "" } = JSON.parse(req.body);
   try {
     //look for customer
     const customerSearch = await client.get(
