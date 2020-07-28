@@ -42,7 +42,8 @@
     "micro": "9.3.4",
     "micro-cors": "0.1.1",
     "@sendgrid/mail": "6.5.5",
-    "bcrypt": "5.0.0"
+    "bcrypt": "5.0.0",
+    "bcryptjs": "^2.4.3"
   },
   "scripts": {
     "build": "gatsby build",
