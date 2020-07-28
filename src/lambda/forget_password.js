@@ -1,16 +1,19 @@
-const { send } = require("micro");
-const cors = require("micro-cors")();
+"use strict";
+const { send,json } = require("micro");
 const { MoltinClient } = require("@moltin/request");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-
-const sendEmail = require("./ESP/sendgrid");
+const bcrypt = require("bcryptjs");
+const cors = require('micro-cors')()
+const sendEmail = require('./ESP/sendgrid')
 const client = new MoltinClient({
   client_id: process.env.PW_CLIENT_ID,
   client_secret: process.env.PW_CLIENT_SECRET
 });
-exports.handler = cors(async (req, res) => {
+
+exports.handler =cors(async(req, req) => {
+  
   const { email = "" } = JSON.parse(req.body);
+  
   try {
     //look for customer
     const customerSearch = await client.get(
@@ -19,41 +22,42 @@ exports.handler = cors(async (req, res) => {
 
     console.log(customerSearch);
     if (customerSearch.data.length === 0)
-      return send(res, 400, { statusCode: 400, error: "customer not found" });
+       return  {
+          statusCode: 400,
+          body: JSON.stringify({ statusCode: 400, error: "customer not found" })
+       }
     let { sk_reset, id, email: useremail } = customerSearch.data[0];
 
     //if no reset key, generate a new one
-    if (sk_reset === null) {
+    if (sk_reset === null) {  
       sk_reset = bcrypt.hashSync(useremail + Date.now(), 2);
       await client.put(`/customers/${id}`, {
         type: "customer",
         sk_reset: sk_reset
       });
     }
-
-    jwt.sign(
-      { id, useremail },
-      sk_reset,
-      {
-        expiresIn: "1h"
-      },
-      function(err, token_enc) {
-        console.log(token_enc);
-        if (err) send(res, 400, { statusCode: 400, message: err.message });
-        else {
-          sendEmail({
+    
+     let respBody = {
+              statusCode: 200,
+              body: JSON.stringify({ statusCode: 200, message: "a link has been sent" })
+     } 
+     const token = jwt.sign({ id, useremail },sk_reset, {expiresIn: "1h"})
+      
+     await sendEmail({
             to: useremail,
             subject: "Password Reset Link",
-            body: `Here's your link to reset password: https://epcc-pwa-demo.netlify.app/password_reset/${token_enc}`
-          });
-          send(res, 200, {
-            statusCode: 200,
-            message: "A reset link has been sent."
-          });
-        }
-      }
-    );
+            body: `Here's your link to reset password: https://epcc-pwa-demo.netlify.app/password_reset/${token}`
+       });
+
+     return {
+              statusCode: 200,
+              body: JSON.stringify({ statusCode: 200, message: "a link has been sent" })
+     } 
   } catch (e) {
-    send(res, 500, { statusCode: 500, message: "there was a server error" });
+     return {
+          statusCode: 500,
+          body: JSON.stringify({ statusCode: 500, message: "There was a server error" })
+     }
   }
+
 });
