@@ -8,7 +8,7 @@ const client = new MoltinClient({
   client_secret: process.env.PW_CLIENT_SECRET
 });
 
-exports.handler = async (event, context, callback) {
+exports.handler = async function(event, context, callback) {
   
   const { email = "" } = JSON.parse(event.body);
   
