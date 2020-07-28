@@ -1,18 +1,16 @@
 "use strict";
-const { send,json } = require("micro");
 const { MoltinClient } = require("@moltin/request");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const cors = require('micro-cors')()
 const sendEmail = require('./ESP/sendgrid')
 const client = new MoltinClient({
   client_id: process.env.PW_CLIENT_ID,
   client_secret: process.env.PW_CLIENT_SECRET
 });
 
-exports.handler =cors(async(req, res) => {
+exports.handler = async (event, context, callback) {
   
-  const { email = "" } = JSON.parse(req.body);
+  const { email = "" } = JSON.parse(event.body);
   
   try {
     //look for customer
@@ -60,4 +58,4 @@ exports.handler =cors(async(req, res) => {
      }
   }
 
-});
+};
