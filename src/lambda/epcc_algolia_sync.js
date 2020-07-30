@@ -2,8 +2,8 @@ const algoliasearch = require("algoliasearch");
 const { MoltinClient } = require("@moltin/request");
 
 const epcc_client = new MoltinClient({
-  client_id: "a2SyrXlQn1HzaH27am93RPzt7hSslNXRYGRy5o5THB",
-  client_secret: "SpYDhGamemK5SjgopkBxQqlyiT3EBCp6Zcf9PmeBmd"
+  client_id: process.env.PW_CLIENT_ID,
+  client_secret: process.env.PW_CLIENT_SECRET
 });
 
 exports.handler = async function(event, context, callback) {
