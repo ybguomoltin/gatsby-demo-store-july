@@ -121,7 +121,7 @@ exports.handler = async function(event, context, callback) {
        // skip if ignore_draft is true AND product status in EPCC is draft AND product in Algolia is draft or doesn't exist
 
        if(payload.data.status === "draft" && (!obj_in_algo || obj_in_algo.status === "draft") && ignore_draft)
-           return { statusCode: 200, body: "ignore_draft is set - changes to draft products is ignored" };
+           return { statusCode: 200, body: "ignore_draft is set - changes to draft products ignored" };
        
        // updates or create entry       
        body = await index.saveObject(entry);
