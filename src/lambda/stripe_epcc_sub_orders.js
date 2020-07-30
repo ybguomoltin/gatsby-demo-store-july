@@ -1,8 +1,8 @@
-const stripe = require("stripe")("sk_test_1CC7nzLXWvBOzW1PQvUuFiID006HwoqZOl");
+const stripe = require("stripe")(process.env.STRIPE_SK);
 const { MoltinClient } = require("@moltin/request");
 const client = new MoltinClient({
-  client_id: "a2SyrXlQn1HzaH27am93RPzt7hSslNXRYGRy5o5THB",
-  client_secret: "SpYDhGamemK5SjgopkBxQqlyiT3EBCp6Zcf9PmeBmd"
+  client_id: process.env.PW_CLIENT_ID,
+  client_secret: process.env.PW_CLIENT_SECRET
 });
 
 function throwException(e) {
