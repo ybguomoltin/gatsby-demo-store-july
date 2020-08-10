@@ -31,7 +31,8 @@ exports.handler = async function(event,context,callback) {
                 plan: {
                   id: priceID,
                   metadata: { ep_id: ep_product_id }
-                }
+                },
+                quantity
               }
             ]
           }
@@ -94,7 +95,7 @@ exports.handler = async function(event,context,callback) {
     let cart_content = {
       type: "cart_item",
       id: ep_product_id,
-      quantity: 1
+      quantity: quantity
     };
     //console.log(cart_content);
     await client.delete(`carts/${sub_id}`).catch(throwException);
